@@ -42,10 +42,13 @@ This repository contains a Gradio-based web application for a Shopping Assistant
    git clone https://github.com/yourusername/shopping-assistant.git
    cd shopping-assistant
 2. Create and activate a virtual environment:
+   ```bash
    python -m venv venv
    source venv/bin/activate   # On Windows use `venv\Scripts\activate`
 3. Install required dependencies:
+   ```bash
    pip install -r requirements.txt
 4. Set your OpenAI and SerpAPI keys as environment variables:
+   ```bash
    export OPENAI_API_KEY='your-openai-api-key'
    export SERPAPI='your-serpapi-key'
