@@ -19,19 +19,24 @@ def analyse_image(base64_image):
     response = shopper_assistant_client.chat.completions.create(
     model="gpt-4-vision-preview",
     messages=[
-        {
-        "role": "user",
-        "content": [
-            {"type": "text", "text": "You are a professional shopping assistant. Give me a list of all products shown in the image and associated search queries to look for the products on google shopping."},
             {
-                "type": "image_url",
-                "image_url": {
-                    "url": f"data:image/png;base64,{base64_image}"
-                },
-            },
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": "You are a professional shopping assistant with expertise in identifying products from images. Analyze the provided image and perform the following tasks:"},
+                    {"type": "text", "text": "1. Identify and list all products shown in the image, including detailed descriptions."},
+                    {"type": "text", "text": "2. Recognize and include brand names where applicable."},
+                    {"type": "text", "text": "3. Describe the shape and fabric/material of each product."},
+                    {"type": "text", "text": "4. Provide associated search queries for Google Shopping that include these details to improve search accuracy."},
+                    {"type": "text", "text": "Your goal is to give a comprehensive overview of the products in the image, making it easier for users to find similar items online."},
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": f"data:image/png;base64,{base64_image}"
+                        }
+                    }
+                ]
+            }
         ],
-        }
-    ],
     max_tokens=300,
     )
     return response.choices[0].message.content
